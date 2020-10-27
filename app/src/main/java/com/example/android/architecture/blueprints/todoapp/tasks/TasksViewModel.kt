@@ -48,7 +48,6 @@ class TasksViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
         tasksRepository.observeTasks().switchMap { filterTasks(it) }
-
     }
 
     val items: LiveData<List<Task>> = _items
