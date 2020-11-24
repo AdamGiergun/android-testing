@@ -28,6 +28,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.architecture.blueprints.todoapp.EventObserver
 import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.data.source.DefaultTasksRepository
 import com.example.android.architecture.blueprints.todoapp.databinding.TaskdetailFragBinding
 import com.example.android.architecture.blueprints.todoapp.tasks.DELETE_RESULT_OK
 import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayout
@@ -42,7 +43,9 @@ class TaskDetailFragment : Fragment() {
 
     private val args: TaskDetailFragmentArgs by navArgs()
 
-    private val viewModel by viewModels<TaskDetailViewModel>()
+    private val viewModel by viewModels<TaskDetailViewModel> {
+        TaskDetailViewModelFactory(DefaultTasksRepository.getRepository(requireActivity().application))
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -53,12 +56,12 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun setupNavigation() {
-        viewModel.deleteTaskEvent.observe(this, EventObserver {
+        viewModel.deleteTaskEvent.observe(viewLifecycleOwner, EventObserver {
             val action = TaskDetailFragmentDirections
                 .actionTaskDetailFragmentToTasksFragment(DELETE_RESULT_OK)
             findNavController().navigate(action)
         })
-        viewModel.editTaskEvent.observe(this, EventObserver {
+        viewModel.editTaskEvent.observe(viewLifecycleOwner, EventObserver {
             val action = TaskDetailFragmentDirections
                 .actionTaskDetailFragmentToAddEditTaskFragment(
                     args.taskId,
