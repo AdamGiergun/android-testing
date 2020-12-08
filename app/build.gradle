@@ -12,7 +12,7 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
-        versionName "3.07"
+        versionName "3.08"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,6 +34,7 @@ android {
     }
     testOptions.unitTests {
         includeAndroidResources = true
+        returnDefaultValues = true
     }
 //    dataBinding {
 //        enabled = true
@@ -81,6 +82,7 @@ dependencies {
     // AndroidX Test - Instrumented testing
     androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
     // Dependencies for Android instrumented unit tests
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
