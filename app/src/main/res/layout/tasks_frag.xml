@@ -47,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -72,34 +73,22 @@
                         android:id="@+id/tasks_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:items="@{viewmodel.items}" />
+                        app:items="@{viewmodel.items}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/no_tasks_layout"
+                <TextView
+                    android:id="@+id/no_tasks_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:orientation="vertical"
-                    android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}">
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/list_item_padding"
+                    android:contentDescription="@string/no_tasks_image_content_description"
+                    android:text="@{context.getString(viewmodel.noTasksLabel)}"
+                    android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}"
+                    app:myDrawableTop="@{ContextCompat.getDrawable(context, viewmodel.noTaskIconRes)}" />
 
-                    <ImageView
-                        android:id="@+id/no_tasks_icon"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
-                        android:layout_gravity="center"
-                        android:src="@{ContextCompat.getDrawable(context, viewmodel.noTaskIconRes)}"
-                        android:contentDescription="@string/no_tasks_image_content_description" />
-
-                    <TextView
-                        android:id="@+id/no_tasks_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/list_item_padding"
-                        android:text="@{context.getString(viewmodel.noTasksLabel)}" />
-                </LinearLayout>
             </RelativeLayout>
 
         </com.example.android.architecture.blueprints.todoapp.ScrollChildSwipeRefreshLayout>
@@ -109,6 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
+            android:contentDescription="@string/add_task"
             android:src="@drawable/ic_add"
             app:fabSize="normal"
             app:layout_anchor="@id/refresh_layout"

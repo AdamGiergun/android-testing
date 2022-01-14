@@ -16,11 +16,11 @@
 package com.example.android.architecture.blueprints.todoapp.tasks
 
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.architecture.blueprints.todoapp.data.Task
-
 
 
 /**
@@ -40,4 +40,10 @@ fun setStyle(textView: TextView, enabled: Boolean) {
     } else {
         textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
     }
+}
+
+@BindingAdapter("app:myDrawableTop")
+fun TextView.setTopDrawable(drawable: Drawable) {
+    drawable.setBounds(0, 0, 192, 192)
+    setCompoundDrawables(null, drawable, null, null)
 }
