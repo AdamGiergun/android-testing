@@ -44,10 +44,10 @@ class TaskDetailFragment : Fragment() {
 
     private val viewModel by viewModels<TaskDetailViewModel>()
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupFab()
-        view?.setupSnackbar(this, viewModel.snackbarText, Snackbar.LENGTH_SHORT)
+        view.setupSnackbar(this, viewModel.snackbarText, Snackbar.LENGTH_SHORT)
         setupNavigation()
         this.setupRefreshLayout(viewDataBinding.refreshLayout)
     }
@@ -69,7 +69,7 @@ class TaskDetailFragment : Fragment() {
     }
 
     private fun setupFab() {
-        activity?.findViewById<View>(R.id.edit_task_fab)?.setOnClickListener {
+        viewDataBinding.editTaskFab.setOnClickListener {
             viewModel.editTask()
         }
     }
