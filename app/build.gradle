@@ -64,7 +64,9 @@ dependencies {
     // Dependencies for local unit tests
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junit5Version"
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinTestVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$hamcrestVersion"
     //testImplementation(platform("org.junit:junit-bom:5.7.0"))
+    // needed only if Junit 4 is used along Junit 5
     testImplementation "junit:junit:$junit4Version"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5Version"
 

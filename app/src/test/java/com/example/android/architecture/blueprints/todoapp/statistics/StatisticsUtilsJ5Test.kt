@@ -1,8 +1,9 @@
 package com.example.android.architecture.blueprints.todoapp.statistics
 
 import com.example.android.architecture.blueprints.todoapp.data.Task
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
 
 internal class StatisticsUtilsJ5Test {
 
@@ -25,14 +26,8 @@ internal class StatisticsUtilsJ5Test {
     }
 
     private fun compareResultWith(expectedResult: StatsResult) {
-        assertEquals(
-            result.completedTasksPercent,
-            expectedResult.completedTasksPercent
-        )
-        assertEquals(
-            result.activeTasksPercent,
-            expectedResult.activeTasksPercent
-        )
+        assertThat(result.completedTasksPercent, `is`(expectedResult.completedTasksPercent))
+        assertThat(result.activeTasksPercent, `is`(expectedResult.activeTasksPercent))
     }
 
     @Nested
