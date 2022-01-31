@@ -4,13 +4,14 @@ import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runTest
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual
 import org.junit.Before
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class DefaultTasksRepositoryTest {
     private val task1 = Task("Title1", "Description1")
     private val task2 = Task("Title2", "Description2")
@@ -36,9 +37,9 @@ class DefaultTasksRepositoryTest {
         )
     }
 
-    @ExperimentalCoroutinesApi
+
     @Test
-    fun getTasks_requestsAllTasksFromRemoteDataSource() = runBlockingTest {
+    fun getTasks_requestsAllTasksFromRemoteDataSource() = runTest(UnconfinedTestDispatcher()) {
         val tasks = tasksRepository.getTasks(true) as Result.Success
 
         assertThat(tasks.data, IsEqual(remoteTasks))
