@@ -12,6 +12,7 @@ import com.example.android.architecture.blueprints.todoapp.data.source.remote.Ta
 object ServiceLocator {
 
     private var database: ToDoDatabase? = null
+
     @Volatile
     var tasksRepository: TasksRepository? = null
 
@@ -22,9 +23,12 @@ object ServiceLocator {
     }
 
     private fun createTasksRepository(context: Context): TasksRepository {
-        val newRepository = DefaultTasksRepository(TasksRemoteDataSource, createTasksLocalDataSource(context))
-        tasksRepository = newRepository
-        return newRepository
+        return DefaultTasksRepository(
+            TasksRemoteDataSource,
+            createTasksLocalDataSource(context)
+        ).also {
+            tasksRepository = it
+        }
     }
 
     private fun createTasksLocalDataSource(context: Context): TasksDataSource {
@@ -33,13 +37,13 @@ object ServiceLocator {
     }
 
     private fun createDatabase(context: Context): ToDoDatabase {
-        val result = Room.databaseBuilder(
+        return Room.databaseBuilder(
             context.applicationContext,
             ToDoDatabase::class.java,
             "Tasks.db"
         ).build()
-        database = result
-        return result
+            .also {
+                database = it
+            }
     }
-
 }
