@@ -23,12 +23,13 @@ import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.TodoApplication
 import com.example.android.architecture.blueprints.todoapp.data.Result.Success
 import com.example.android.architecture.blueprints.todoapp.data.Task
-import com.example.android.architecture.blueprints.todoapp.data.source.DefaultTasksRepository
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
 
 /**
  * ViewModel for the Add/Edit screen.
  */
+@InternalCoroutinesApi
 class AddEditTaskViewModel(application: Application) : AndroidViewModel(application) {
 
     private val tasksRepository = (application as TodoApplication).tasksRepository

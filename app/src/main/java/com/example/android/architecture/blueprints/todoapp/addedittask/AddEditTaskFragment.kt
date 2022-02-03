@@ -30,10 +30,12 @@ import com.example.android.architecture.blueprints.todoapp.tasks.ADD_EDIT_RESULT
 import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayout
 import com.example.android.architecture.blueprints.todoapp.util.setupSnackbar
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.InternalCoroutinesApi
 
 /**
  * Main UI for the add task screen. Users can enter a task title and description.
  */
+@InternalCoroutinesApi
 class AddEditTaskFragment : Fragment() {
 
     private lateinit var viewDataBinding: AddtaskFragBinding
@@ -68,7 +70,7 @@ class AddEditTaskFragment : Fragment() {
     }
 
     private fun setupNavigation() {
-        viewModel.taskUpdatedEvent.observe(this, EventObserver {
+        viewModel.taskUpdatedEvent.observe(viewLifecycleOwner, EventObserver {
             val action = AddEditTaskFragmentDirections
                 .actionAddEditTaskFragmentToTasksFragment(ADD_EDIT_RESULT_OK)
             findNavController().navigate(action)

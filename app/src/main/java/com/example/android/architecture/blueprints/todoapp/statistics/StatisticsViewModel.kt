@@ -23,12 +23,13 @@ import com.example.android.architecture.blueprints.todoapp.data.Result
 import com.example.android.architecture.blueprints.todoapp.data.Result.Error
 import com.example.android.architecture.blueprints.todoapp.data.Result.Success
 import com.example.android.architecture.blueprints.todoapp.data.Task
-import com.example.android.architecture.blueprints.todoapp.data.source.DefaultTasksRepository
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
 
 /**
  * ViewModel for the statistics screen.
  */
+@InternalCoroutinesApi
 class StatisticsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val tasksRepository = (application as TodoApplication).tasksRepository

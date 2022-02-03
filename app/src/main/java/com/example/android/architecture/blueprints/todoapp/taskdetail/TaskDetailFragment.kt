@@ -34,10 +34,12 @@ import com.example.android.architecture.blueprints.todoapp.tasks.DELETE_RESULT_O
 import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayout
 import com.example.android.architecture.blueprints.todoapp.util.setupSnackbar
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.InternalCoroutinesApi
 
 /**
  * Main UI for the task detail screen.
  */
+@InternalCoroutinesApi
 class TaskDetailFragment : Fragment() {
     private lateinit var viewDataBinding: TaskdetailFragBinding
 

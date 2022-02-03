@@ -25,10 +25,12 @@ import androidx.fragment.app.viewModels
 import com.example.android.architecture.blueprints.todoapp.R
 import com.example.android.architecture.blueprints.todoapp.databinding.StatisticsFragBinding
 import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayout
+import kotlinx.coroutines.InternalCoroutinesApi
 
 /**
  * Main UI for the statistics screen.
  */
+@InternalCoroutinesApi
 class StatisticsFragment : Fragment() {
 
     private lateinit var viewDataBinding: StatisticsFragBinding

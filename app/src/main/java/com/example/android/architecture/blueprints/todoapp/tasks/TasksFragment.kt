@@ -36,11 +36,13 @@ import com.example.android.architecture.blueprints.todoapp.databinding.TasksFrag
 import com.example.android.architecture.blueprints.todoapp.util.setupRefreshLayout
 import com.example.android.architecture.blueprints.todoapp.util.setupSnackbar
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.InternalCoroutinesApi
 import timber.log.Timber
 
 /**
  * Display a grid of [Task]s. User can choose to view all, active or completed tasks.
  */
+@InternalCoroutinesApi
 class TasksFragment : Fragment() {
 
     private val viewModel by viewModels<TasksViewModel> {

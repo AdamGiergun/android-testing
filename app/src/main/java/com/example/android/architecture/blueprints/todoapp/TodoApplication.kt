@@ -18,6 +18,7 @@ package com.example.android.architecture.blueprints.todoapp
 
 import android.app.Application
 import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository
+import kotlinx.coroutines.InternalCoroutinesApi
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
@@ -27,6 +28,7 @@ import timber.log.Timber.DebugTree
  *
  * Also, sets up Timber in the DEBUG BuildConfig. Read Timber's documentation for production setups.
  */
+@InternalCoroutinesApi
 class TodoApplication : Application() {
 
     val tasksRepository: TasksRepository
