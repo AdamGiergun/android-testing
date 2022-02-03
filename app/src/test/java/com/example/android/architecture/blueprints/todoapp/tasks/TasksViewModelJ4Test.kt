@@ -2,7 +2,7 @@ package com.example.android.architecture.blueprints.todoapp.tasks
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.android.architecture.blueprints.todoapp.data.Task
-import com.example.android.architecture.blueprints.todoapp.data.source.FakeTestRepository
+import com.example.android.architecture.blueprints.todoapp.data.source.FakeRepository
 import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
@@ -12,7 +12,7 @@ import org.junit.Test
 
 class TasksViewModelJ4Test {
 
-    private lateinit var tasksRepository: FakeTestRepository
+    private lateinit var tasksRepository: FakeRepository
 
     // Subject under test
     private lateinit var tasksViewModel: TasksViewModel
@@ -23,7 +23,7 @@ class TasksViewModelJ4Test {
 
     @Before
     fun setupViewModel() {
-        tasksRepository = FakeTestRepository()
+        tasksRepository = FakeRepository()
         val task1 = Task("Title1", "Description1")
         val task2 = Task("Title2", "Description2", true)
         val task3 = Task("Title3", "Description3", true)
