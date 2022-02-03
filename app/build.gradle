@@ -81,6 +81,15 @@ dependencies {
     testImplementation "junit:junit:$junit4Version"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5Version"
 
+    // Dependencies for Android instrumented unit tests
+    androidTestImplementation "junit:junit:$junit4Version"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    // Testing code should not be included in the main code.
+    // Once https://issuetracker.google.com/128612536 is fixed this can be fixed.
+    debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    debugImplementation "androidx.test:core:$androidXTestCoreVersion"
+
 
     // AndroidX Test - Instrumented testing
     androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
