@@ -45,7 +45,7 @@ ext {
     archTestingVersion = '2.1.0'
     cardVersion = '1.0.0'
     coroutinesVersion = '1.6.0-native-mt'
-    dexMakerVersion = '2.12.1'
+    dexMakerVersion = '2.28.1'
     espressoVersion = '3.4.0'
     fragmentVersion = '1.5.0-alpha01'
     fragmentKtxVersion = '1.5.0-alpha01'
@@ -55,7 +55,7 @@ ext {
     kotlinTestVersion = '1.6.10'
     lifecycle_version = "2.5.0-alpha01"
     materialVersion = '1.5.0'
-    mockitoVersion = '2.8.9'
+    mockitoVersion = '4.3.1'
     recyclerViewVersion = '1.2.1'
     robolectricVersion = '4.7.3'
     roomVersion = '2.4.1'
