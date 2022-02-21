@@ -32,6 +32,7 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources true
+            returnDefaultValues true
         }
         unitTests.all {
             useJUnitPlatform()
@@ -89,6 +90,8 @@ dependencies {
 
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
 
+
+
     // needed only if Junit 4 is used along Junit 5
     testImplementation "junit:junit:$junit4Version"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junit5Version"
@@ -104,6 +107,8 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
     debugImplementation "androidx.test:core:$androidXTestCoreVersion"
 
+
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
     // AndroidX Test - Instrumented testing
     androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
