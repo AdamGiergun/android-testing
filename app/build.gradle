@@ -39,15 +39,13 @@ android {
         }
     }
 
-    android {
-        sourceSets {
-            String sharedTestDir = 'src/sharedTest/java'
-            test {
-                java.srcDir sharedTestDir
-            }
-            androidTest {
-                java.srcDir sharedTestDir
-            }
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+        }
+        androidTest {
+            java.srcDir sharedTestDir
         }
     }
 }
@@ -89,7 +87,6 @@ dependencies {
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
 
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
-
 
 
     // needed only if Junit 4 is used along Junit 5
