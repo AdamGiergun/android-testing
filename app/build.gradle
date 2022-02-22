@@ -48,6 +48,18 @@ android {
             java.srcDir sharedTestDir
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        development {
+            dimension "version"
+            versionNameSuffix ".dev"
+        }
+        production {
+            dimension "version"
+            versionNameSuffix ""
+        }
+    }
 }
 
 dependencies {
