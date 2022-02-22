@@ -92,25 +92,42 @@ class TasksActivityTest {
 
             // Make sure the activity is closed before resetting the db
             close()//    private val dataBindingIdlingResource = DataBindingIdlingResource()
-//
-//    @Before
-//    fun registerIdlingResource() {
-//        IdlingRegistry.getInstance().register(
-//            EspressoIdlingResource.countingIdlingResource,
-//            dataBindingIdlingResource
-//        )
-//    }
-//
-//    @After
-//    fun unregisterIdlingResource() {
-//        IdlingRegistry.getInstance().unregister(
-//            EspressoIdlingResource.countingIdlingResource,
-//            dataBindingIdlingResource
-//        )
-//    }
-
         }
-
     }
 
+    @Test
+    fun createOneTask_deleteTask() {
+
+        // 1. Start TasksActivity.
+        ActivityScenario.launch(TasksActivity::class.java).run {
+
+            dataBindingIdlingResource.monitorActivity(this)
+
+            // 2. Add an active task by clicking on the FAB and saving a new task.
+            onView(withId(R.id.add_task_fab)).perform(click())
+            onView(withId(R.id.add_task_title_edit_text)).perform(replaceText("TITLE2"))
+            onView(withId(R.id.add_task_description_edit_text)).perform(replaceText("DESCRIPTION2"))
+            onView(withId(R.id.save_task_fab)).perform(click())
+
+            // 3. Open the new task in a details view.
+            onView(withText("TITLE2")).perform(click())
+
+            // 4. Click delete task in menu.
+            onView(withId(R.id.menu_delete)).perform(click())
+//            try {
+//
+//            } catch (e: NoMatchingViewException) {
+//                openActionBarOverflowOrOptionsMenu(getApplicationContext())
+//                onView(withText(R.string.menu_delete_task)).perform(click())
+//            }
+
+            // 5. Verify it was deleted.
+            onView(withId(R.id.menu_filter)).perform(click())
+            onView(withText(R.string.nav_all)).perform(click())
+            onView(withText("TITLE2")).check(doesNotExist())
+
+            // 6. Make sure the activity is closed.
+            close()
+        }
+    }
 }
