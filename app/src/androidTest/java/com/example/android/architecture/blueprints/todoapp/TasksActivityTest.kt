@@ -3,6 +3,7 @@ package com.example.android.architecture.blueprints.todoapp
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
@@ -13,6 +14,9 @@ import androidx.test.filters.LargeTest
 import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.data.source.TasksRepository
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
+import com.example.android.architecture.blueprints.todoapp.util.DataBindingIdlingResource
+import com.example.android.architecture.blueprints.todoapp.util.EspressoIdlingResource
+import com.example.android.architecture.blueprints.todoapp.util.monitorActivity
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.core.IsNot.not
@@ -41,6 +45,24 @@ class TasksActivityTest {
         ServiceLocator.resetRepository()
     }
 
+    private val dataBindingIdlingResource = DataBindingIdlingResource()
+
+    @Before
+    fun registerIdlingResource() {
+        IdlingRegistry.getInstance().register(
+            EspressoIdlingResource.countingIdlingResource,
+            dataBindingIdlingResource
+        )
+    }
+
+    @After
+    fun unregisterIdlingResource() {
+        IdlingRegistry.getInstance().unregister(
+            EspressoIdlingResource.countingIdlingResource,
+            dataBindingIdlingResource
+        )
+    }
+
     @Test
     fun editTask() = runBlocking {
         // Set initial state
@@ -48,6 +70,8 @@ class TasksActivityTest {
 
         // Start up tasks screen
         ActivityScenario.launch(TasksActivity::class.java).run {
+
+            dataBindingIdlingResource.monitorActivity(this)
 
             // Click on the task on the list and verify that all the data is correct
             onView(withText("TITLE1")).perform(click())
@@ -67,7 +91,24 @@ class TasksActivityTest {
             onView(withText("TITLE1")).check(doesNotExist())
 
             // Make sure the activity is closed before resetting the db
-            close()
+            close()//    private val dataBindingIdlingResource = DataBindingIdlingResource()
+//
+//    @Before
+//    fun registerIdlingResource() {
+//        IdlingRegistry.getInstance().register(
+//            EspressoIdlingResource.countingIdlingResource,
+//            dataBindingIdlingResource
+//        )
+//    }
+//
+//    @After
+//    fun unregisterIdlingResource() {
+//        IdlingRegistry.getInstance().unregister(
+//            EspressoIdlingResource.countingIdlingResource,
+//            dataBindingIdlingResource
+//        )
+//    }
+
         }
 
     }
