@@ -5,7 +5,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.Test
 
-class StatisticsUtilsJ4Test {
+class StatisticsUtilsTest {
 
     @Test
     fun getActiveAndCompletedStats_noCompleted_returnsHundredZero() {

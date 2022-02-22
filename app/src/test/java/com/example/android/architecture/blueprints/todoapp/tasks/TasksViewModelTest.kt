@@ -15,7 +15,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class TasksViewModelJ4Test {
+class TasksViewModelTest {
 
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()

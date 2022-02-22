@@ -5,7 +5,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.jupiter.api.*
 
-internal class StatisticsUtilsJ5Test {
+internal class StatisticsUtilsJunit5Test {
 
     private var tasks: List<Task>? = null
     private lateinit var result: StatsResult

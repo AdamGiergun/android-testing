@@ -25,7 +25,7 @@ import org.junit.runner.RunWith
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 @MediumTest
-class TaskDetailFragmentJ4Test {
+class TaskDetailFragmentTest {
 
     private lateinit var repository: TasksRepository
 
