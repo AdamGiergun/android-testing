@@ -8,6 +8,8 @@ import com.example.android.architecture.blueprints.todoapp.data.Task
 import com.example.android.architecture.blueprints.todoapp.data.source.FakeRepository
 import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
@@ -64,13 +66,14 @@ class TasksViewModelTest {
     }
 
     @Test
-    fun completeTask_dataAndSnackbarUpdated() {
-        // With a repository that has an active tasks
+    fun completeTask_dataAndSnackbarUpdated() = mainCoroutineRule.testScope.runTest {
+        // With a repository that has an active task
         val task = Task("Title", "Description")
         tasksRepository.addTasks(task)
 
         // Complete task
         tasksViewModel.completeTask(task, true)
+        advanceUntilIdle()
 
         // Verify that the task is completed
         assertThat(tasksRepository.tasksServiceData[task.id]?.isCompleted, `is`(true))
