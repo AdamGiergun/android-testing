@@ -30,7 +30,7 @@ import org.mockito.Mockito.verify
 @MediumTest
 @InternalCoroutinesApi
 @ExperimentalCoroutinesApi
-class TasksFragmentJ4Test {
+class TasksFragmentTest {
 
     private lateinit var repository: TasksRepository
 
