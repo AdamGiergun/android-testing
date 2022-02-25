@@ -43,7 +43,7 @@ class StatisticsViewModelTest {
     }
 
     @Test
-    fun loadTasks_loading() = mainCoroutineRule.testScope.runTest {
+    fun loadTasks_loading() = runTest {
         withContext(StandardTestDispatcher(testScheduler)) {
             statisticsViewModel.refresh()
             assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(true))
@@ -53,7 +53,7 @@ class StatisticsViewModelTest {
     }
 
     @Test
-    fun loadStatisticsWhenTasksAreUnavailable_callErrorToDisplay() = mainCoroutineRule.testScope.runTest{
+    fun loadStatisticsWhenTasksAreUnavailable_callErrorToDisplay() = runTest {
         // Make the repository return errors
         tasksRepository.setReturnError(true)
 

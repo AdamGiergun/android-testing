@@ -66,7 +66,7 @@ class TasksViewModelTest {
     }
 
     @Test
-    fun completeTask_dataAndSnackbarUpdated() = mainCoroutineRule.testScope.runTest {
+    fun completeTask_dataAndSnackbarUpdated() = runTest {
         // With a repository that has an active task
         val task = Task("Title", "Description")
         tasksRepository.addTasks(task)

@@ -44,7 +44,7 @@ class DefaultTasksRepositoryTest {
 
 
     @Test
-    fun getTasks_requestsAllTasksFromRemoteDataSource() = runTest(mainCoroutineRule.dispatcher) {
+    fun getTasks_requestsAllTasksFromRemoteDataSource() = runTest {
         val tasks = tasksRepository.getTasks(true) as Result.Success
 
         assertThat(tasks.data, IsEqual(remoteTasks))
