@@ -38,12 +38,11 @@ class StatisticsViewModelJunit5Test {
 
     @Test
     fun loadTasks_loading() = runTest {
-        withContext(StandardTestDispatcher(testScheduler)) {
-            statisticsViewModel.refresh()
-            assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(true))
-            advanceUntilIdle()
-            assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(false))
-        }
+
+        statisticsViewModel.refresh()
+        assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(true))
+        advanceUntilIdle()
+        assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(false))
     }
 
     @Test

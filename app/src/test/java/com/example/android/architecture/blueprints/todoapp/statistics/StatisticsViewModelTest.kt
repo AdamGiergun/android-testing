@@ -6,10 +6,8 @@ import com.example.android.architecture.blueprints.todoapp.data.source.FakeRepos
 import com.example.android.architecture.blueprints.todoapp.getOrAwaitValue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.withContext
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
@@ -44,12 +42,10 @@ class StatisticsViewModelTest {
 
     @Test
     fun loadTasks_loading() = runTest {
-        withContext(StandardTestDispatcher(testScheduler)) {
-            statisticsViewModel.refresh()
-            assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(true))
-            advanceUntilIdle()
-            assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(false))
-        }
+        statisticsViewModel.refresh()
+        assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(true))
+        advanceUntilIdle()
+        assertThat(statisticsViewModel.dataLoading.getOrAwaitValue(), `is`(false))
     }
 
     @Test
