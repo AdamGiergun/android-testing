@@ -118,7 +118,6 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
     debugImplementation "androidx.test:core:$androidXTestCoreVersion"
 
-
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
     // AndroidX Test - Instrumented testing
